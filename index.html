@@ -1214,12 +1214,16 @@ const SettingsPage = ({ toast }) => {
 ═══════════════════════════════════════════ */
 const App = () => {
   useEffect(() => {
-    loadTransactionsFromGoogleSheet().then(data => {
-      if (data.length > 0) {
-        setTxns(data);
-      }
-    });
-  }, []);
+    const interval = setInterval(async () => {
+    const latest = await loadTransactionsFromGoogleSheet();
+
+    if (latest.length > 0) {
+      setTxns(latest);
+    }
+  }, 5000);
+
+  return () => clearInterval(interval);
+}, []);
 
   const [user,  setUser]  = useState(null);
   const [view,  setView]  = useState('dashboard');
