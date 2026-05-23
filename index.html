@@ -1257,10 +1257,25 @@ const App = () => {
     setView('transactions');
   };
 
-  const updateTxn = (id, patch) => {
-    const updated = txns.map(t => t.id===id ? {...t,...patch} : t);
-    setTxns(updated); DB.set('opex_transactions', updated);
-  };
+  const updateTxn = async (id, patch) => {
+  const updated = txns.map(t =>
+    t.id === id ? { ...t, ...patch } : t
+  );
+
+  setTxns(updated);
+
+  DB.set('opex_transactions', updated);
+
+  if (patch.status) {
+    await updateTransactionStatus(id, patch.status);
+  }
+
+  // reload realtime
+  setTimeout(async () => {
+    const latest = await loadTransactionsFromGoogleSheet();
+    setTxns(latest);
+  }, 1200);
+};
 
   const updateCats = (c) => { setCats(c); };
 
