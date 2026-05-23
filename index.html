@@ -851,10 +851,10 @@ const TxnList = ({ txns, cats, user, onUpdate, toast }) => {
       doc.text('Laporan Transaksi Operasional — OpEx Tracker', 14, 16);
       doc.setFontSize(9);
       doc.setTextColor(120);
-      doc.text(`Digenerate: ${new Date().toLocaleString('id-ID')} | Total: ${rupiah(total)} | ${filtered.length} transaksi`, 14, 23);
+      doc.text(`Digenerate: ${new Date().toLocaleDateString('id-ID')} | Total: ${rupiah(total)} | ${filtered.length} transaksi`, 14, 23);
       doc.autoTable({
         head:[['Tanggal','Merchant','Nominal','Kategori','Metode','Status','Catatan']],
-        body:filtered.map(t=>[new Date(t.transaction_date).toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' }),t.merchant_name,rupiah(t.amount),t.category,t.payment_method||'-',t.status,t.notes||'']),
+        body:filtered.map(t=>[new Date(t.transaction_date).toLocaleDateString('id-ID', { timeZone: 'Asia/Jakarta' }),t.merchant_name,rupiah(t.amount),t.category,t.payment_method||'-',t.status,t.notes||'']),
         startY:28, theme:'grid', styles:{ fontSize:8, cellPadding:3 },
         headStyles:{ fillColor:[9,9,11], textColor:[200,200,200], fontStyle:'bold' },
         alternateRowStyles:{ fillColor:[248,248,248] },
