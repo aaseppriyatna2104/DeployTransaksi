@@ -141,6 +141,26 @@ const loadTransactionsFromGoogleSheet = async () => {
   }
 };
 
+const updateTransactionStatus = async (id, status) => {
+  try {
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        action: 'update_status',
+        id,
+        status
+      })
+    });
+
+    console.log('Status berhasil diupdate');
+  } catch (err) {
+    console.error('Gagal update status', err);
+  }
+};
 
 /* ─── localStorage helpers ─── */
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx7nh8w2tETE5NPihwCxcf-I80jk_VkOKhwx3Uqju7UzPrs6jM51TO_m6Q7lZxVu3ti6w/exec';
