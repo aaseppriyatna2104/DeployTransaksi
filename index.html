@@ -88,6 +88,7 @@ const DEFAULT_CATEGORIES = [
   { id:'cat-2', name:'Gerbang Toll', icon:'🛣️', color:'green' },
   { id:'cat-8', name:'Bahan Bakar', icon:'⛽', color:'amber' },
   { id:'cat-9', name:'Lainnya', icon:'📦', color:'gray' },
+  { id:'cat-5', name:'Flazz', icon:'📱', color:'yellow' },
 ];
 
 const PAYMENT_METHODS = ['E-Toll', 'Tunai'];
@@ -1062,7 +1063,7 @@ const CatsPage = ({ cats, setCats, toast }) => {
   const [name, setName]     = useState('');
   const [icon, setIcon]     = useState('📦');
   const [desc, setDesc]     = useState('');
-  const ICONS = ['📦','🅿️','🛣️','🍽️','🚗','✏️','📱','🏨','⛽','🏥','💻','🎫','🛒','📮','🔧','📞','🍜','☕','🎓','🏋️'];
+  const ICONS = ['📦','🅿️','🛣️','📱','⛽'];
 
   const add = () => {
     if (!name.trim()) return toast('Nama kategori wajib diisi','error');
